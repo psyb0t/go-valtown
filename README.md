@@ -104,6 +104,8 @@ make generate
 - `scripts/fix-spec.sh` runs it through `scripts/fix-valtown-spec.jq` and writes `api/openapi.fixed.json`. The spec declares several string enums (privacy, val type, SQLite batch mode and others) with no `type`. oapi-codegen turns those into `interface{}` with no constants, so the filter adds `type: string` to every enum whose values are all strings.
 - oapi-codegen runs with `config.yaml`. The config maps `number` to `float64`, because the spec gives numbers no format and oapi-codegen would otherwise use `float32`.
 
+`.github/workflows/regen.yml` does the same every day in CI. When the new spec changes the client, it runs `make lint`, `make test` and `make sec`. If a check fails, Claude edits the code and the checks run again, up to three times, and a review step reads the result. A passing change is committed with a CHANGELOG entry and tagged as the next release: a patch version for fixes and additions, a minor version for breaking changes.
+
 ## Development
 
 Every command runs in the `Dockerfile.dev` image. The host needs only Docker and Make.

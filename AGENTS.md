@@ -38,6 +38,7 @@ make sec       # gitleaks, govulncheck, semgrep
 - Several request bodies are defined types over generated structs (`SqliteExecuteJSONRequestBody`, `EmailsSendJSONRequestBody` and others). That is fine for plain structs. If upstream turns one into a `oneOf`, the defined type drops the union's `MarshalJSON` and the client sends `{}`; move the schema into `components` in the jq filter so the body type becomes an alias.
 - semgrep's `unsafe-deserialization-interface` rule is excluded in `scripts/sec.sh`. oapi-codegen decodes untyped response schemas into `interface{}`, which the spec leaves no way around.
 - The CI pipeline skips the generate drift check, because the spec changes upstream without notice. Regenerate locally and commit the result.
+- `.github/workflows/regen.yml` regenerates the client every day and releases the result. When the checks fail, Claude edits the repository to fix them, but a fix may not touch the paths listed under `fix_protected_paths` in that workflow: the workflows, the Makefile, `AGENTS.md`, `.agents/rules/`, the lint, security and spec download scripts and their configs. A problem that needs a change there fails the run and needs a manual fix.
 
 ## Rules
 

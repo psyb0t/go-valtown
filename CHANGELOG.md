@@ -2,6 +2,10 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.1, 2026-10-17
+
+- Documentation only. The README and `AGENTS.md` describe the daily regeneration workflow: what it checks, how it fixes failing checks, how it picks the next version and which paths a fix may not touch.
+
 ## v0.1.0, 2026-10-16
 
 - Added `valtown`, a REST client generated with oapi-codegen from Val Town's OpenAPI document at api.val.town (Val Town API, spec version 1, OpenAPI 3.1.0). It covers all 35 paths: vals, branches, files, environment variables and variable groups, blobs, SQLite, email, telemetry, users, orgs and aliases.
