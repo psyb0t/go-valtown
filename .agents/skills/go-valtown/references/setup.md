@@ -1,5 +1,16 @@
 # go-valtown: setup and reference
 
+## Contents
+
+- [Requirements](#requirements)
+- [Install](#install)
+- [Auth](#auth)
+- [Operations](#operations)
+- [Pagination](#pagination)
+- [Union types](#union-types)
+- [Enums](#enums)
+- [Errors](#errors)
+
 ## Requirements
 
 - Go 1.26.9 or newer, per the module's `go.mod`.

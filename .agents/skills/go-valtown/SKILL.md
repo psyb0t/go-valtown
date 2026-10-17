@@ -1,6 +1,7 @@
 ---
 name: go-valtown
 description: Unofficial Go client for the Val Town API, generated with oapi-codegen. Package `valtown` (`github.com/psyb0t/go-valtown`) calls api.val.town to manage vals, branches and files, environment variables and variable groups, blob storage, the account's SQLite database, email, telemetry logs and traces, users, orgs and aliases. Every endpoint is a typed `...WithResponse` method on `ClientWithResponses`, auth is a bearer API token set through `WithRequestEditorFn`, and responses decode into `JSON200` and per-status fields. Use when Go code needs to talk to Val Town, or already imports go-valtown.
+license: MIT
 homepage: https://github.com/psyb0t/go-valtown
 user-invocable: true
 metadata:
@@ -9,8 +10,6 @@ metadata:
     requires:
       bins:
         - go
-      env:
-        - VALTOWN_API_TOKEN
 permissions:
   filesystem: "Guides edits to the Go source of the current project. The library reads and writes no files."
   shell: "The Go toolchain (`go get`, `go build`, `go test`) to add and compile the dependency."
@@ -39,6 +38,20 @@ For install details, the full operation list and pagination, see [references/set
 
 - Code running inside a val. Vals run on Deno and use Val Town's own `std/` modules, not Go.
 - Code that is not Go. Call the HTTP API directly.
+
+## Finding endpoints and types
+
+The examples below cover a few calls. Every operation in the spec has a generated method, and the spec's descriptions are on them as Go doc comments. Look names and fields up instead of guessing. After `go get github.com/psyb0t/go-valtown`, from inside your module:
+
+```bash
+go doc github.com/psyb0t/go-valtown ClientWithResponsesInterface  # every endpoint method
+go doc github.com/psyb0t/go-valtown ValsList2Params                # one method, params type or model
+go doc -all github.com/psyb0t/go-valtown                           # the whole package
+```
+
+The same documentation is at https://pkg.go.dev/github.com/psyb0t/go-valtown.
+
+Method names come from the spec's operation IDs. `<OperationId>WithResponse` takes the context, then the path parameters in order, then `*<OperationId>Params` when the operation has query or header parameters, then the request body when it has one. The `JSON200` field (or `JSON201` and so on, per declared status) holds the decoded body; it is nil for any other status. Some names carry the API version (`V1blobsList`, `V2blobsList`), most v2 val endpoints end in `2` (`ValsList2`, `ProjectsDelete2`), and v3 endpoints without an operation ID are named after their path (`GetV3ValViewer`).
 
 ## Client and auth
 
@@ -116,4 +129,4 @@ Use `FromSqliteExecuteJSONBodyStatement1` for SQL with bound arguments, and pass
 
 ## Errors
 
-A transport failure comes back as `err`. An HTTP error status does not: check `res.StatusCode()` or `res.JSON200 == nil` (`JSON201` for creates), then read the typed error field such as `res.JSON400` or `res.JSON404`, or the raw `res.Body`.
+A transport failure comes back as `err`. An HTTP error status does not: check `res.StatusCode()` or `res.JSON200 == nil` (`JSON201` for creates), then read the typed error field (such as `res.JSON404`) when the spec declares one for that operation, or the raw `res.Body`.

@@ -10,6 +10,16 @@ Unofficial Go client for the [Val Town API](https://docs.val.town/api/), generat
 
 The package is `valtown`, in the repository root. Everything in `client.gen.go` is generated. Don't edit it by hand, regenerate it.
 
+## Contents
+
+- [Install](#install)
+- [Usage](#usage)
+- [Auth](#auth)
+- [Regenerating](#regenerating)
+- [Development](#development)
+- [Agent integrations](#agent-integrations)
+- [License](#license)
+
 ## Install
 
 ```sh
@@ -18,7 +28,7 @@ go get github.com/psyb0t/go-valtown
 
 ## Usage
 
-Every endpoint in the spec has a typed method on `ClientWithResponses`. Responses decode into `JSON200` and the other status fields.
+Every endpoint in the spec has a typed method on `ClientWithResponses`. Responses decode into `JSON200` and the other status fields. The full API, with the spec's descriptions as doc comments, is in the [Go reference](https://pkg.go.dev/github.com/psyb0t/go-valtown) and in `go doc github.com/psyb0t/go-valtown`.
 
 ```go
 package main

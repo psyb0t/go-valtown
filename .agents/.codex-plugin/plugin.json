@@ -1,6 +1,6 @@
 {
   "name": "go-valtown",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Unofficial Go client for the Val Town API: vals, branches, files, environment variables, blobs, SQLite, email, telemetry and users, generated from Val Town's OpenAPI document.",
   "author": {
     "name": "psyb0t",
