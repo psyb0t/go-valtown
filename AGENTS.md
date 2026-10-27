@@ -10,7 +10,7 @@ Data flow, declared in `gen.go`: `scripts/fetch-spec.sh` (download into the giti
 
 ## Stack
 
-- Go 1.26.9. oapi-codegen v2 as a `go.mod` tool; `github.com/oapi-codegen/runtime` at runtime.
+- Go 1.26.10. oapi-codegen v2 as a `go.mod` tool; `github.com/oapi-codegen/runtime` at runtime.
 - jq for the spec patch. No hand-written library code.
 
 ## Layout
