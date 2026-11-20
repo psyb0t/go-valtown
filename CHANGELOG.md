@@ -2,6 +2,12 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.5, 2026-11-20
+
+- Raised the minimum Go version in `go.mod` from 1.26.10 to 1.26.11, which fixes the `net/http` HTTP/1 server crash GO-2026-6859 found by govulncheck.
+- The development image uses `golang:1.26.11-trixie`, and the setup reference in the agent skill names Go 1.26.11.
+- No exported API changes.
+
 ## v0.1.4, 2026-10-28
 
 - Updated Semgrep in the development image to 1.182.1 and refreshed its locked dependencies. certifi 2026.10.23 drops the emSign root CAs whose intermediate keys were compromised (GHSA-6q48-6c7w-9gw2).
